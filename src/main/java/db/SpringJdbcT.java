@@ -1,5 +1,6 @@
 package db;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,13 +11,17 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 public class SpringJdbcT {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JsonProcessingException {
 
 		Map properties = Maps.newLinkedHashMap();
 		properties.put("javax.persistence.jdbc.driver", "org.sqlite.JDBC");
@@ -33,18 +38,33 @@ public class SpringJdbcT {
 		exeUpdate(factory, "CREATE TABLE sys_data (jsonfld json  )");
 		exeUpdate(factory, "insert into sys_data values('{\"age\":88}')");
 
-		//jpa query err ,cant find entity map
-//	System.out.println(query(factory,"select json_extract(jsonfld,'$.age') as age from sys_data") );	;
-//		System.out.println("f");
-
+		//----------------- insert by spring jdbc
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.sqlite.JDBC");
 		dataSource.setUrl(properties.get("javax.persistence.jdbc.url").toString());
-//	        dataSource.setUsername("guest_user");
+	 
+		SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("sys_data");
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		Map rec1 = Maps.newHashMap(ImmutableMap.of("name", 999999999, "age", 22));
+		
+	 //.defaultPrettyPrintingWriter()
+		 
+		parameters.put("jsonfld",    new ObjectMapper().writeValueAsString(rec1)  );
+		simpleJdbcInsert.execute(parameters);
+
+		
+		//--------------query sprin gjdbc 
+		// jpa query err ,cant find entity map
+//	System.out.println(query(factory,"select json_extract(jsonfld,'$.age') as age from sys_data") );	;
+//		System.out.println("f");
+
+//	 	        dataSource.setUsername("guest_user");
 //	        dataSource.setPassword("guest_password");
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "select json_extract(jsonfld,'$.age') as age from sys_data";
+		sql = "select *   from sys_data";
 		List li = jdbcTemplate.queryForList(sql);
+
 		System.out.println(li);
 
 	}
@@ -72,13 +92,12 @@ public class SpringJdbcT {
 
 	}
 
-	
 	private static List<Map> query(EntityManagerFactory factory, String sql) {
 		EntityManager em = factory.createEntityManager();
-		Query createNativeQuery = em.createNativeQuery(sql ,Map.class );
-		
-	//	createNativeQuery.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);  
-		 List<Map> result = createNativeQuery.getResultList();
-		 return result;
+		Query createNativeQuery = em.createNativeQuery(sql, Map.class);
+
+		// createNativeQuery.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		List<Map> result = createNativeQuery.getResultList();
+		return result;
 	}
 }

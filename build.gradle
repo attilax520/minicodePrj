@@ -22,6 +22,8 @@ repositories {
 }
 
 dependencies {
+ compile("org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE")
+
 
  compile("org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE")
    // providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:1.5.2.RELEASE'
