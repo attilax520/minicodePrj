@@ -16,6 +16,7 @@ public class Application extends SpringBootServletInitializer {
   }
  
   public static void main(String[] args) throws Exception {
+	  System.out.println("f");
       SpringApplication.run(Application.class, args);
   }
 }
