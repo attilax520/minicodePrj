@@ -1,7 +1,7 @@
 atitit dsl script exe run spec
 
 c.txt
-ScriptEngineManager spec...
+##ScriptEngineManager spec...
 
 
 	public static void main(String[] args) throws FileNotFoundException, ScriptException {
@@ -41,3 +41,6 @@ public class groovyRun {
 
 	
 	##  java  scriptExplain.jar    xxx.scrpt
+	
+	
+	## APACHE COMMOND API
