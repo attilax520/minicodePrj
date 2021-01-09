@@ -27,8 +27,60 @@
 	</properties>
 
 	<dependencies>
+	
+	
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+ 
+	
+	
+ 
+	
+	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.3.1</version>
+</dependency>
+	
+	
+ 
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core -->
+<dependency>
+    <groupId>org.apache.tomcat.embed</groupId>
+    <artifactId>tomcat-embed-core</artifactId>
+    <version>8.5.0</version>
+</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-catalina</artifactId>
+    <version>8.5.0</version>
+</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-jasper</artifactId>
+    <version>8.5.0</version>
+</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-servlet-api</artifactId>
+    <version>8.5.0</version>
+</dependency>
+	
+	
 
-		<!-- core -->
+	
+
+		<!-- ********************************************core -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -80,7 +132,36 @@
 		</dependency>
 
 
-		<!--   ################  jdbc s-jdbc -->
+		<!--   ################*****************************  jdbc s-jdbc -->
+		
+		
+			<!-- db embed sqlite -->
+		<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+<dependency>
+    <groupId>com.mchange</groupId>
+    <artifactId>c3p0</artifactId>
+    <version>0.9.5.5</version>
+</dependency>
+
+
+<dependency>
+    <groupId>org.xerial</groupId>
+    <artifactId>sqlite-jdbc</artifactId>
+    <version>3.30.1</version>
+</dependency>
+		<dependency>
+    <groupId>p6spy</groupId>
+    <artifactId>p6spy</artifactId>
+    <version>3.7.0</version>
+</dependency>
+			
+	<!-- https://mvnrepository.com/artifact/com.googlecode.log4jdbc/log4jdbc -->
+<dependency>
+    <groupId>com.googlecode.log4jdbc</groupId>
+    <artifactId>log4jdbc</artifactId>
+    <version>1.2</version>
+</dependency>
 		<dependency>
 			<groupId>p6spy</groupId>
 			<artifactId>p6spy</artifactId>
@@ -104,7 +185,7 @@
 
 
 
-		<!--###########3 dsl -->		<!-- regexpress lib -->
+		<!--###########*****************3 dsl   regexpress lib -->
 		<dependency>
 			<groupId>oro</groupId>
 			<artifactId>oro</artifactId>
@@ -251,7 +332,7 @@
 			<version>1.25</version>
 		</dependency>
 
-		<!-- db embed sqlite -->
+	
 
 
 		<!-- #################3 spring-boot -->
