@@ -1,5 +1,6 @@
 package db;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,16 +11,22 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
+import miniCodePrjPkg.Log4j2HelloWorld;
+
 public class SpringJdbcT {
+	
+    private static final Logger logger_log4j2 = LogManager.getLogger(Log4j2HelloWorld.class);
 
 	public static void main(String[] args) throws JsonProcessingException {
 
@@ -63,10 +70,42 @@ public class SpringJdbcT {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "select json_extract(jsonfld,'$.age') as age from sys_data";
 		sql = "select *   from sys_data";
+		sql="select 1 as t";
 		List li = jdbcTemplate.queryForList(sql);
 
 		System.out.println(li);
 
+	}
+	
+	@Test
+	public void testQuery()
+	{
+		
+		logger_log4j2.info("-------------log4j2 outmsg----------");
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	//	dataSource.setDriverClassName("org.sqlite.JDBC");
+		dataSource.setDriverClassName("net.sf.log4jdbc.DriverSpy");
+		
+	//	dataSource.setUrl("jdbc:p6spy:sqlite:test" + Math.random() + ".db");
+		dataSource.setUrl("jdbc:log4jdbc:sqlite:test" + Math.random() + ".db");
+		
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String sql = "select json_extract(jsonfld,'$.age') as age from sys_data";
+		sql = "select *   from sys_data";
+		sql="select 1 as t";
+		List li = query(jdbcTemplate, sql);
+
+		System.out.println(li);
+	}
+
+	private List query(JdbcTemplate jdbcTemplate, String sql) {
+		logger_log4j2.info(sql);
+		List li = jdbcTemplate.queryForList(sql);
+		logger_log4j2.info("li.size():"+li.size());
+		if(li.size()<20)
+		logger_log4j2.info(JSON.toJSONString(li,true));
+		return li;
 	}
 
 	private static int exeUpdate(EntityManagerFactory factory, String sql) {

@@ -1,0 +1,20 @@
+atitit dsl script exe run spec
+
+c.txt
+ScriptEngineManager spec...
+
+
+	public static void main(String[] args) throws FileNotFoundException, ScriptException {
+	
+		String fileName = "C:\\Users\\user\\git\\minicodePrj\\src\\main\\java\\miniCodePrjPkg\\Sample.scala";
+	//	fileName=args[0].trim();
+		ScriptEngine engineByName = new ScriptEngineManager().getEngineByName("scala");
+		Object object=engineByName
+				.eval(new FileReader(fileName));
+
+      System.out.println(object);
+
+	}
+
+	
+	##  

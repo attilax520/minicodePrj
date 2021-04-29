@@ -6,11 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * import org.springframework.boot.test.context.SpringBootTest; from sprigoot  tests
+import org.springframework.test.context.junit4.SpringRunner; from  spring test
+ * 
+ * @author user
+ *
+ */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class }) // Ö¸¶¨Æô¶¯Àà
+@SpringBootTest(classes = { Application.class }) // Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class SpringbootTest {
 
-	// @SpringApplicationConfiguration(classes = Application.class)// 1.4.0 Ç°°æ±¾
+	// @SpringApplicationConfiguration(classes = Application.class)// 1.4.0 Ç°ï¿½æ±¾
 	@Autowired
 	Service1 svr1;
 
