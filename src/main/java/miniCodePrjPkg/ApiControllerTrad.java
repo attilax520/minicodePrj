@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import javax.validation.constraints.NotNull;
 import javax.websocket.server.PathParam;
 
-import org.apache.ibatis.session.SqlSessionFactory;
+ 
 import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -155,7 +155,7 @@ public class ApiControllerTrad {
 
 	})
 
-	// http://112.121.163.125:9601/queryPageTrad/football_odds_t_ex?@page=1&@pagesize=10&odds_type=1
+	// http://localhost:8080/api/queryPageTrad/tab222/1/10?col1=55&c2=666
 	@GetMapping("/api/queryPageTrad/{fromParam}/{pagesizePrm}/{pagePrm}")
 	public Object queryPage(@PathVariable(name = "fromParam") String from,
 			@PathVariable(name = "pagesizePrm") int pagesize, @PathVariable(name = "pagePrm") int page)
@@ -163,8 +163,8 @@ public class ApiControllerTrad {
 
 		ReqUtil.setHttpHead(res);
 
-		String sql = " select " + ReqUtil.selectExp(req) + " from" + from + "  " + ReqUtil.getWhere(req) + ReqUtil.orderExp(req)
-				+ " limit " + (page - 1) * pagesize + " ," + pagesize;
+		String sql = " select " + ReqUtil.selectExp(req) + " from " + from + "  " + ReqUtil.getWhere(req) + ReqUtil.orderExp(req)
+				+ " limit " +( (page - 1) * pagesize) + " ," + pagesize;
 
 	//	List<Map<String, Object>> queryForList = query(sql);
 		return Dbutil. query(sql,ds);
@@ -246,9 +246,7 @@ public class ApiControllerTrad {
 	@Autowired
 	public HttpServletRequest req;
 
-	@Autowired
-
-	public SqlSessionFactory sqlSessionFactory;
+ 
 //	@Autowired
 //	public MybatisMapper MybatisMapper1;
 
