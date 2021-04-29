@@ -14,43 +14,108 @@
 
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>grpid.artid.App</start-class>
-		<java.version>1.8</java.version>
-		<lombok.version>1.14.8</lombok.version>
-		<log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
+	 
 		<rest.assured.version>2.3.3</rest.assured.version>
 	</properties>
 
-	<dependencies>
 
-		<!-- core -->
-		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+  
+  <!--  sprbt start  -->
+	<!--  sprbt start  need part.. nood def any springt ver in perperties and jackson ver -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		  <version>2.2.6.RELEASE</version>
+	</parent>
+	
+	<dependencies>
+	
+		
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- 
+	 springboot test
+		 -->
+		
+			<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.2.5.RELEASE</version>
+		</dependency>	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+			<!-- 
+	 springboot test   end
+		 -->
+	<!--  sprbt end -->
+	
+	
+		<!-- **************mybatis end -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.4.6</version>
+</dependency>
+
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>4.2.1</version>
+</dependency>
+<dependency>
+    <groupId>com.github.jsqlparser</groupId>
+    <artifactId>jsqlparser</artifactId>
+    <version>0.9.1</version>
+</dependency>
+
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.6</version>
+</dependency>
+
+	<!--mybatis end -->
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.66</version>
+</dependency>
+
+		<!--*********** core -->
+		 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>28.2-jre</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.10</version>
 		</dependency>
-		<!--io https://mvnrepository.com/artifact/commons-io/commons-io -->
+	 
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.7</version>
 		</dependency>
 
-		<!--jdbc s https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>5.2.4.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+	 
+	
+	 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -59,30 +124,20 @@
 
 
 
-		<!-- dsl https://mvnrepository.com/artifact/org.scala-lang/scala-library -->
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>2.13.1</version>
-		</dependency>
 
 
-
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-		<dependency>
+		 <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>2.0.0-alpha1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-		<dependency>
+		 <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>2.0.0-alpha1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-		<dependency>
+	 	<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>3.2.4</version>
@@ -91,43 +146,18 @@
 
 		<!-- db embed sqlite -->
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.10.2</version>
-		</dependency>
+	
 
 
 
 
-		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
-		<dependency>
+	 	<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.2</version>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.2.6.RELEASE</version>
-			<scope>test</scope>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.2.6.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<version>2.2.6.RELEASE</version>
-		</dependency>
+ 
 
 
 
@@ -140,4 +170,25 @@
 		<groupId>org.springframework</groupId> <artifactId>springloaded</artifactId> 
 		<version>${spring-loaded.version}</version> </dependency> </dependencies> 
 		</plugin> </plugins> </build> -->
+		
+		<!-- 
+		
+		 	<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.2</version>
+		</dependency>
+	 	<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.13.1</version>
+		</dependency>
+		
+		
+			<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.2.4.RELEASE</version>
+		</dependency>
+		 -->
 </project>
