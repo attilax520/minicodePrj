@@ -21,6 +21,13 @@
 	<resultMap id="rm5" type="map">
 
 	</resultMap>
+	
+	<!-- parameterType="map"  -->
+	  <select id="qryByRq"    resultType="map">
+       select      #{_parameter.p1[0]} aa, '${_parameter.p2[0]}' bb
+    </select>
+    
+    
 	   <select id="qryMltQry2" parameterType="map"  resultMap="rm,rm2,rm3">
     select 1; select 4;
     </select>

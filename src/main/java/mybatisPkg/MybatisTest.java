@@ -9,6 +9,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
@@ -23,27 +24,46 @@ public class MybatisTest {
 
 		SqlSession sess = sqlSessionFactory.openSession(true);
 		List<Map> li;
-		// = sess.selectList("stt2");
-//System.out.println(JSON.toJSONString(li));
-//
-//li=	 sess.selectList("qry","select 2 t2");
-//System.out.println(JSON.toJSONString(li));
-//
-		// mlt query,,cant use in mybatis3.4.6
-		List<List<Map>> objLI = sess.selectList("qryMltQry2", "select 2 t2;select 3 t3;");
-		System.out.println(JSON.toJSONString(objLI));
+		//quryBySql();
+		
+		qryByRq(sess);
+		
+//		mltQry(sess);
 //pagging(sess);
 
 	}
 
+	private static void qryByRq(SqlSession sess) {
+		MockHttpServletRequest req=new MockHttpServletRequest();
+		req.setParameter("p1", "1'23");req.setParameter("p2", "22");
+		List objLI = sess.selectList("qryByRq", req.getParameterMap());
+		System.out.println(JSON.toJSONString(objLI));
+		
+	}
+
+	private static void quryBySql() {
+		// = sess.selectList("stt2");
+		//System.out.println(JSON.toJSONString(li));
+		//
+		//li=	 sess.selectList("qry","select 2 t2");
+		//System.out.println(JSON.toJSONString(li));
+		System.out.println(1);
+	}
+
+	private static void mltQry(SqlSession sess) {
+		// mlt query,,cant use in mybatis3.4.6
+		List<List<Map>> objLI = sess.selectList("qryMltQry2", "select 2 t2;select 3 t3;");
+		System.out.println(JSON.toJSONString(objLI));
+	}
+
 	private static void pagging(SqlSession sess) {
-		// ÉèÖÃ·ÖÒ³Ìõ¼þ£¬Parameters:pageNum Ò³ÂëpageSize Ã¿Ò³ÏÔÊ¾ÊýÁ¿count ÊÇ·ñ½øÐÐcount²éÑ¯
+		// ï¿½ï¿½ï¿½Ã·ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Parameters:pageNum Ò³ï¿½ï¿½pageSize Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½count ï¿½Ç·ï¿½ï¿½ï¿½ï¿½countï¿½ï¿½Ñ¯
 		PageHelper.startPage(1, 3, true);
 		// PageHelper.startPage(1,10);
-		// ´ËÊ±ÒÑ¾­·ÖÒ³ÁË
+		// ï¿½ï¿½Ê±ï¿½Ñ¾ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
 		List objLI = sess.selectList("qry", "select 2 t2;select 3 t3;");
 		System.out.println(JSON.toJSONString(objLI));
-		// ¿ÉÒÔÊ¹ÓÃPageInfo ²é¿´·ÖÒ³ÐÅÏ¢
+		// ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½PageInfo ï¿½é¿´ï¿½ï¿½Ò³ï¿½ï¿½Ï¢
 		System.out.println(JSON.toJSONString(new PageInfo(objLI)));
 	}
 
