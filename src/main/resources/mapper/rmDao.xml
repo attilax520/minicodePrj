@@ -22,6 +22,11 @@
 
 	</resultMap>
 	
+	  <select id="qryByRqFstval"    resultType="map">
+       select      #{_parameter.getParameterMapFstVal.p1} aa, '${_parameter.getParameterMap.p2[0]}' bb
+    </select>
+    
+	
 	<!-- parameterType="map"  -->
 	  <select id="qryByRq"    resultType="map">
        select      #{_parameter.p1[0]} aa, '${_parameter.p2[0]}' bb

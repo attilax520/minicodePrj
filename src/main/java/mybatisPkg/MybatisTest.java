@@ -9,11 +9,14 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import util.HttpUtilV5v44;
 
 public class MybatisTest {
 
@@ -31,6 +34,19 @@ public class MybatisTest {
 //		mltQry(sess);
 //pagging(sess);
 
+	}
+	@Test
+	public   void test_qryByRqFstval () throws Exception {
+		InputStream is = Resources.getResourceAsStream("mybatis.xml");
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+
+		SqlSession sess = sqlSessionFactory.openSession(true);
+		List<Map> li;
+		MockHttpServletRequest req=new MockHttpServletRequest();
+		req.setParameter("p1", "1'23");req.setParameter("p2", "22");
+		List objLI = sess.selectList("qryByRqFstval",HttpUtilV5v44.getParamMap2Mybatis( req));
+		System.out.println(JSON.toJSONString(objLI));
+		
 	}
 
 	private static void qryByRq(SqlSession sess) {
