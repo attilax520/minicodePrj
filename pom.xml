@@ -61,6 +61,24 @@
 		 -->
 	<!--  sprbt end -->
 	
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.12</version>
+</dependency>
+
+<!-- ******* spr reds -->
+	
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-pool2</artifactId>
+</dependency>
+	<!-- ******* spr reds  end...-->
 	
 		<!-- **************mybatis end -->
 <dependency>
@@ -85,6 +103,9 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>5.1.6</version>
 </dependency>
+
+
+
 
 	<!--mybatis end -->
 <dependency>
