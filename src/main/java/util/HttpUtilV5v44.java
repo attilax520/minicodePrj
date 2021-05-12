@@ -34,9 +34,9 @@ public class HttpUtilV5v44 {
 	 * @param request 请求
 	 * @return map
 	 */
-	private static Map getParameterMapFstVal(HttpServletRequest request) {
+	public static Map getParameterMapFstVal(HttpServletRequest request) {
 
-		Map map = new HashMap();
+		Map map = new LinkedHashMap();
 		Enumeration paramNames = request.getParameterNames();
 		while (paramNames.hasMoreElements()) {
 			String paramName = (String) paramNames.nextElement();
