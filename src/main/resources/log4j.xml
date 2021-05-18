@@ -16,6 +16,18 @@
           value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c  - %m  line:%l %n" />  
         </layout>  
     </appender>  
+     <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">  
+        <layout class="org.apache.log4j.PatternLayout">  
+        <param name="ConversionPattern"   
+          value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c  - %m  line:%l %n" />  
+        </layout>  
+    </appender>  
+       <appender name="logFileAppender" class="org.apache.log4j.ConsoleAppender">  
+        <layout class="org.apache.log4j.PatternLayout">  
+        <param name="ConversionPattern"   
+          value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c  - %m  line:%l %n" />  
+        </layout>  
+    </appender>  
   
     <root>  
         <level value="debug" />  

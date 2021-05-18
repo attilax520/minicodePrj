@@ -39,7 +39,7 @@
 	   <select id="qryMltQry"   resultMap="rm,rm2,rm3">
     			 ${_parameter} select 4;
     </select>
-
+<select id="qry1" resultType="map">${_parameter}</select>
 	<select id="qry" resultType="map">${_parameter}</select>
 
 	<select id="stt3" resultType="map">select 1 t</select>
