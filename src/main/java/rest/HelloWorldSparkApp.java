@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 import other.Log4jTet;
 
-public class HelloWorld {
+public class HelloWorldSparkApp {
 	
     public static void main(String[] args) {
     	  Logger logger =  Logger.getLogger(Log4jTet.class);
