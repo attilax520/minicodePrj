@@ -23,14 +23,24 @@ public class HelloController {
     Object db() {
     	
     	  Logger logger =  Logger.getLogger(Log4jTet.class);
-    	  logger.info( SqlSession1.selectList("qry1","select 1 t1"));
+    	  String statement = "qry1";
+		logger.info( SqlSession1.selectList(statement,"select 1 t1"));
     	
     //	org.sqlite.JDBC
       //  return   SqlSession1.selectList("qry1","select 2 t22");
     	SqlSessionFactory SqlSessionFactory2=	(SqlSessionFactory) Application.cfgAppContext.getBean("sqlSessionFactoryDb2");
-    	SqlSession SqlSession2=SqlSessionFactory2.openSession(true);
-    	return   SqlSession2.selectList("qry1","select 3 t33");
+    	
+    	Object parameter = "select 3 t33";
+    	return exe(statement, parameter, SqlSessionFactory2);
     }
+
+
+
+	private Object exe(String statement, Object parameter, SqlSessionFactory SqlSessionFactory2) {
+		SqlSession SqlSession2=SqlSessionFactory2.openSession(true);
+    
+		return   SqlSession2.selectList(statement,parameter);
+	}
     
     
 

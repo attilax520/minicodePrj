@@ -22,8 +22,8 @@ public class MybatisTest {
 
 	public static void main(String[] args) throws Exception {
 		// com.mysql.cj.jdbc.Driver
-		InputStream is = Resources.getResourceAsStream("mybatis.xml");
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+		String resource = "mybatis.xml";
+		SqlSessionFactory sqlSessionFactory = getSqlsessFac(resource);
 
 		SqlSession sess = sqlSessionFactory.openSession(true);
 		List<Map> li;
@@ -34,6 +34,11 @@ public class MybatisTest {
 //		mltQry(sess);
 //pagging(sess);
 
+	}
+	private static SqlSessionFactory getSqlsessFac(String resource) throws IOException {
+		InputStream is = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+		return sqlSessionFactory;
 	}
 	@Test
 	public   void test_qryByRqFstval () throws Exception {

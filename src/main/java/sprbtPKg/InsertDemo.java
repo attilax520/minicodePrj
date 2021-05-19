@@ -27,6 +27,8 @@ public class InsertDemo {
 		parameters_map.put("first_name", "aaa");
 
 		int i = insert(dataSource, tableName, parameters_map);
+		
+		SimpleJdbcTemplate  
 
 		System.out.println(i);
 		System.out.println("f");
