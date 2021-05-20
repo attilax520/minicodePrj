@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,7 +21,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.mysql.cj.core.conf.url.ConnectionUrlParser;
@@ -30,16 +33,34 @@ import utils.PropertieUtil;
 import utils.SpringUtil;
 
 public class MybatisUtilV55 {
+	
+	public static void main(String[] args) throws Exception {
+		SqlSessionFactory fac=getSqlSessFacByDburlNmapxml("jdbc:sqlite:test77.db","file:d:/*.xml");
+	System.out.println(fac);
+	System.out.println(fac.openSession(true).selectList("qry","select 1"));
+	}
 
 	public static SqlSessionFactory getSqlSessFac(DataSource dataSourceDb2, String mapPaths) throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSourceDb2);
 		// String mapPath = "classpath:mapper/**/*.xml";
 
-		factoryBean.setMapperLocations(getRsces(mapPaths));
+		Resource[] rsces = getRsces(mapPaths);
+		factoryBean.setMapperLocations(rsces);
 		return factoryBean.getObject();
 	}
+	public static SqlSessionFactory getSqlSessFacByDburlNmapxml(String mysqlConnUrl,String mapPaths) throws Exception {
+	
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.sqlite.JDBC");
+		dataSource.setUrl(mysqlConnUrl);
+		return getSqlSessFac(dataSource,mapPaths);
+	}
+	
+	
+	
 
+	@Deprecated
 	public static SqlSessionFactory getSqlSessionFactoryBySprbtCfgfile(String mapPaths) {
 		try {
 			List<String> mpList = Arrays.asList(mapPaths.split(","));
@@ -80,8 +101,15 @@ public class MybatisUtilV55 {
 		}
 		// [file
 		// [C:\Users\ATI\eclipse-workspace\miniCodePrj\target\classes\mapper\rmDao.xml]
-
+		List li=new ArrayList();
 		Resource[] ResourceMappers = resourcesSet.stream().toArray(Resource[]::new);
+	 //	System.out.println(JSON.toJSONString(ResourceMappers,true) );
+	for (Resource resource : ResourceMappers) {
+		li.add(resource.toString());
+	}
+	 	System.out.println(JSON.toJSONString(li,true) );
+	
+		 
 		return ResourceMappers;
 	}
 

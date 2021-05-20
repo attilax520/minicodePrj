@@ -3,9 +3,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="nm">
-	<!-- 自定义返回结果集 -->
-
-
+ 
+<!--   ffdd  ddss ... -->
+   
 	<resultMap id="rm" type="map">
 
 	</resultMap>
@@ -21,25 +21,27 @@
 	<resultMap id="rm5" type="map">
 
 	</resultMap>
-	
-	  <select id="qryByRqFstval"    resultType="map">
-       select      #{_parameter.getParameterMapFstVal.p1} aa, '${_parameter.getParameterMap.p2[0]}' bb
-    </select>
-    
-	
-	<!-- parameterType="map"  -->
-	  <select id="qryByRq"    resultType="map">
-       select      #{_parameter.p1[0]} aa, '${_parameter.p2[0]}' bb
-    </select>
-    
-    
-	   <select id="qryMltQry2" parameterType="map"  resultMap="rm,rm2,rm3">
-    select 1; select 4;
-    </select>
-	   <select id="qryMltQry"   resultMap="rm,rm2,rm3">
-    			 ${_parameter} select 4;
-    </select>
-<select id="qry1" resultType="map">${_parameter}</select>
+
+	<select id="qryByRqFstval" resultType="map">
+		select #{_parameter.getParameterMapFstVal.p1} aa,
+		'${_parameter.getParameterMap.p2[0]}' bb
+	</select>
+
+
+	<!-- parameterType="map" -->
+	<select id="qryByRq" resultType="map">
+		select #{_parameter.p1[0]} aa, '${_parameter.p2[0]}' bb
+	</select>
+
+
+	<select id="qryMltQry2" parameterType="map"
+		resultMap="rm,rm2,rm3">
+		select 1; select 4;
+	</select>
+	<select id="qryMltQry" resultMap="rm,rm2,rm3">
+		${_parameter} select 4;
+	</select>
+	<select id="qry1" resultType="map">${_parameter}</select>
 	<select id="qry" resultType="map">${_parameter}</select>
 
 	<select id="stt3" resultType="map">select 1 t</select>
